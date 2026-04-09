@@ -12,7 +12,7 @@ def guardar_dado(dados_rolados, dados_no_estoque, dado_para_guardar):
     novos_dados = []
     dados_no_estoque.append(dados_rolados[dado_para_guardar])
     for i in range(len(dados_rolados)):
-        if i != dado_para_guardar
+        if i != dado_para_guardar:
             novos_dados.append(dados_rolados[i])
     resp = [novos_dados, dados_no_estoque]
     return resp
