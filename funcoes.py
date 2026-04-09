@@ -23,10 +23,13 @@ def guardar_dado(dados_rolados, dados_no_estoque, dado_para_guardar):
 # Exercício 3
 
 def remover_dado(lista_dados_rolados, lista_dados_estoque, n_indice):
+    novo_estoque = []
     lista = []
-    for i in range(len(lista_dados_rolados)):
+    for i in range(len(lista_dados_estoque)):
         if i == n_indice:
-            lista_dados_estoque.append(lista_dados_rolados[i])
+            lista_dados_rolados.append(lista_dados_estoque[i])
         else:
-            lista.append(lista_dados_rolados[i])
+            novo_estoque.append(lista_dados_estoque[i])
+    lista.append(lista_dados_rolados)
+    lista.append(novo_estoque)
     return lista
