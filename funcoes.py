@@ -24,8 +24,9 @@ def guardar_dado(dados_rolados, dados_no_estoque, dado_para_guardar):
 
 def remover_dado(lista_dados_rolados, lista_dados_estoque, n_indice):
     lista = []
-    dado_removido = lista_dados_estoque.pop(n_indice)
-    lista_dados_rolados.append(dado_removido)
-    lista.append(lista_dados_rodados)
-    lista.append(lista_dados_estoque)
+    for i in range(len(lista_dados_rolados)):
+        if i == n_indice:
+            lista_dados_estoque.append(lista_dados_rolados[i])
+        else:
+            lista.append(lista_dados_rolados[i])
     return lista
