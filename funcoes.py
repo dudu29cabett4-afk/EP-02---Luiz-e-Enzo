@@ -51,3 +51,11 @@ def calcula_pontos_regra_simples(lista_dados):
         elif lista_dados[i] == 6:
             pontos[6] += 6
     return pontos
+
+# -------------------------------------------------------------
+# Exercício 5
+def calcula_pontos_soma(lista_dados):
+    soma = 0
+    for i in range(len(lista_dados)):
+        soma += lista_dados[i]
+    return soma
