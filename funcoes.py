@@ -33,3 +33,21 @@ def remover_dado(lista_dados_rolados, lista_dados_estoque, n_indice):
     lista.append(lista_dados_rolados)
     lista.append(novo_estoque)
     return lista
+# -------------------------------------------------------------
+# Exercício 4
+def calcula_pontos_regra_simples(lista_dados):
+    pontos = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0}
+    for i in range(len(lista_dados)):
+        if lista_dados[i] == 1:
+            pontos[1] += 1
+        elif lista_dados[i] == 2:
+            pontos[2] += 2
+        elif lista_dados[i] == 3:
+            pontos[3] += 3
+        elif lista_dados[i] == 4:
+            pontos[4] += 4
+        elif lista_dados[i] == 5:
+            pontos[5] += 5
+        elif lista_dados[i] == 6:
+            pontos[6] += 6
+    return pontos
