@@ -155,8 +155,8 @@ def faz_jogada(lista_dados, categoria, dicionario):
 
     for chave, valor in pontosSimples.items():
         if chave == categoria:
-            dicionario["regra_simples"][categoria] += valor
+            dicionario["regra_simples"][categoria] = valor
     for chave, valor in pontosAvancado.items():
         if chave == categoria:
-            dicionario["regra_avancada"][categoria] += valor
+            dicionario["regra_avancada"][categoria] = valor
     return dicionario
