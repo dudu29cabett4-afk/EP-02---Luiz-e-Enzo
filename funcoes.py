@@ -146,3 +146,17 @@ def calcula_pontos_regra_avancada(lista_dados):
     pontuação_avançada['quadra'] = calcula_pontos_quadra(lista_dados)
     pontuação_avançada['cinco_iguais'] = calcula_pontos_quina(lista_dados)
     return pontuação_avançada
+
+# -------------------------------------------------------------
+# Exercício 12
+def faz_jogada(lista_dados, categoria, dicionario):
+    pontosSimples = calcula_pontos_regra_simples(lista_dados)
+    pontosAvancado = calcula_pontos_regra_avancada(lista_dados)
+
+    for chave, valor in pontosSimples.items():
+        if chave == categoria:
+            dicionario["regra_simples"][categoria] += valor
+    for chave, valor in pontosAvancado.items():
+        if chave == categoria:
+            dicionario["regra_avancada"][categoria] += valor
+    return dicionario
