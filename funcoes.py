@@ -71,3 +71,15 @@ def calcula_pontos_sequencia_baixa(lista_dados):
         if sequencia == list(range(sequencia[0], sequencia[0] + 4)):
             return 15
     return 0
+
+# -------------------------------------------------------------
+# Exercício 7
+def calcula_pontos_sequencia_alta(lista_dados):
+    lista_dados = sorted(set(lista_dados))
+    if len(lista_dados) < 5:
+        return 0
+    for i in range(len(lista_dados) - 4):
+        sequencia = lista_dados[i:i+5]
+        if sequencia == list(range(sequencia[0], sequencia[0] + 5)):
+            return 30
+    return 0
