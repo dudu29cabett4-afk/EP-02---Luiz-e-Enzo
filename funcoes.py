@@ -64,7 +64,10 @@ def calcula_pontos_soma(lista_dados):
 # Exercício 6
 def calcula_pontos_sequencia_baixa(lista_dados):
     lista_dados = sorted(set(lista_dados))
-    for i in range(len(lista_dados)-1):
-        if lista_dados[i+1] != lista_dados[i] + 1:
-            return 0
-    return 15
+    if len(lista_dados) < 4:
+        return 0
+    for i in range(len(lista_dados) - 3):
+        sequencia = lista_dados[i:i+4]
+        if sequencia == list(range(sequencia[0], sequencia[0] + 4)):
+            return 15
+    return 0
