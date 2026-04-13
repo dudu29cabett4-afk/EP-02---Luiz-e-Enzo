@@ -102,6 +102,7 @@ def calcula_pontos_full_house(lista_dados):
             total += dado
         return total
     return 0
+
 # -------------------------------------------------------------
 # Exercício 9
 def calcula_pontos_quadra(lista_dados):
@@ -119,6 +120,7 @@ def calcula_pontos_quadra(lista_dados):
         return soma_dados
     else:
         return 0 
+    
 # -------------------------------------------------------------
 # Exercício 10
 def calcula_pontos_quina(lista_dados):
@@ -132,3 +134,15 @@ def calcula_pontos_quina(lista_dados):
             return 50
         
     return 0 
+
+# -------------------------------------------------------------
+# Exercício 11
+def calcula_pontos_regra_avancada(lista_dados):
+    pontuação_avançada = {'cinco_iguais': 0, 'full_house': 0, 'quadra': 0, 'sem_combinacao': 0, 'sequencia_alta': 0, 'sequencia_baixa': 0}
+    pontuação_avançada['sem_combinacao'] = calcula_pontos_soma(lista_dados)
+    pontuação_avançada['sequencia_baixa'] = calcula_pontos_sequencia_baixa(lista_dados)
+    pontuação_avançada['sequencia_alta'] = calcula_pontos_sequencia_alta(lista_dados)
+    pontuação_avançada['full_house'] = calcula_pontos_full_house(lista_dados)
+    pontuação_avançada['quadra'] = calcula_pontos_quadra(lista_dados)
+    pontuação_avançada['cinco_iguais'] = calcula_pontos_quina(lista_dados)
+    return pontuação_avançada
