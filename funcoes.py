@@ -83,3 +83,16 @@ def calcula_pontos_sequencia_alta(lista_dados):
         if sequencia == list(range(sequencia[0], sequencia[0] + 5)):
             return 30
     return 0
+
+# -------------------------------------------------------------
+# Exercício 8
+def calcula_pontos_full_house(lista_dados):
+    contagem = {}
+    for dado in lista_dados:
+        if dado in contagem:
+            contagem[dado] += 1
+        else:
+            contagem[dado] = 1
+    if sorted(contagem.values()) == [2, 3]:
+        return 19
+    return 0
