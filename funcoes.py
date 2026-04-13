@@ -102,3 +102,20 @@ def calcula_pontos_full_house(lista_dados):
             total += dado
         return total
     return 0
+# -------------------------------------------------------------
+# Exercício 9
+def calcula_pontos_quadra(lista_dados):
+    soma_dados = 0
+    quadra = False
+    for i in range(len(lista_dados)):
+        contagem = 0
+        for j in range(len(lista_dados)):
+            if lista_dados[i] == lista_dados[j]:
+                contagem += 1
+        soma_dados += lista_dados[i]
+        if contagem >= 4:
+            quadra = True
+    if quadra == True:
+        return soma_dados
+    else:
+        return 0 
