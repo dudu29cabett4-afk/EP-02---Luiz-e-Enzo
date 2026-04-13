@@ -63,14 +63,7 @@ def calcula_pontos_soma(lista_dados):
 # -------------------------------------------------------------
 # Exercício 6
 def calcula_pontos_sequencia_baixa(lista_dados):
-    sequencia = True
-    for i in range(len(lista_dados)):
-        if lista_dados[i+1] == lista_dados[i] + 1:
-            sequencia = True
-        else:
-            sequencia = False
-            
-    if sequencia == True:
-        return 15
-    else:
-        return 0
+    for i in range(len(lista_dados)-1):
+        if lista_dados[i+1] != lista_dados[i] + 1:
+            return 0
+    return 15
