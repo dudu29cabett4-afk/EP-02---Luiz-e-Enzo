@@ -153,6 +153,10 @@ def faz_jogada(lista_dados, categoria, dicionario):
     pontosSimples = calcula_pontos_regra_simples(lista_dados)
     pontosAvancado = calcula_pontos_regra_avancada(lista_dados)
 
+    lista = ["1", "2", "3", "4", "5", "6"]
+    if categoria in lista:
+        categoria = int(categoria)
+
     for chave, valor in pontosSimples.items():
         if chave == categoria:
             dicionario["regra_simples"][categoria] = valor
