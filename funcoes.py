@@ -119,3 +119,16 @@ def calcula_pontos_quadra(lista_dados):
         return soma_dados
     else:
         return 0 
+# -------------------------------------------------------------
+# Exercício 10
+def calcula_pontos_quina(lista_dados):
+    quina = False
+    for i in range(len(lista_dados)):
+        contagem = 0
+        for j in range(len(lista_dados)):
+            if lista_dados[i] == lista_dados[j]:
+                contagem += 1
+        if contagem >= 5:
+            return 50
+        
+    return 0 
