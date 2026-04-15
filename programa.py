@@ -28,30 +28,30 @@ while i < 12:
     print(f"Dados rolados: {dados}")
     print(f"Dados guardados: {dados_guardados}")
     print("Digite 1 para guardar um dado, 2 para remover um dado, 3 para rerrolar, 4 para ver a cartela ou 0 para marcar a pontuação:")
-    ação = int(input())
-    if ação == 1:
+    ação = input()
+    if ação == '1':
         print("Digite o índice do dado a ser guardado (0 a 4):")
         guardar = int(input())
         qnt_de_dados = qnt_de_dados - 1
         dados_atu = funcoes.guardar_dado(dados, dados_guardados, guardar)
         dados_guardados = dados_atu[1]
         dados = dados_atu[0]
-    elif ação == 2:
+    elif ação == '2':
         print("Digite o índice do dado a ser removido (0 a 4):")
         remover = int(input())
         qnt_de_dados = qnt_de_dados + 1
         dados_atu = funcoes.remover_dado(dados, dados_guardados, remover)
         dados_guardados = dados_atu[1]
         dados = dados_atu[0]
-    elif ação == 3:
+    elif ação == '3':
         if rerrolar >= 2:
             print("Você já usou todas as rerrolagens.")
         else:
             dados = funcoes.rolar_dados(qnt_de_dados)
             rerrolar += 1
-    elif ação == 4:
+    elif ação == '4':
         funcoes.imprime_cartela(cartela_de_pontos)
-    elif ação == 0:
+    elif ação == '0':
         validacao = False
         print("Digite a combinação desejada:")
         while validacao != True:
@@ -65,6 +65,7 @@ while i < 12:
                     qnt_de_dados = 5
                     dados = funcoes.rolar_dados(qnt_de_dados)
                     dados_guardados = []
+                    rerrolar = 0
                     i += 1
                     validacao = True
                 else:
@@ -75,6 +76,7 @@ while i < 12:
                     qnt_de_dados = 5
                     dados = funcoes.rolar_dados(qnt_de_dados)
                     dados_guardados = []
+                    rerrolar = 0
                     i += 1
                     validacao = True
                 else:
