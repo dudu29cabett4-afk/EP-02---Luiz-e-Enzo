@@ -50,44 +50,49 @@ while i < 12:
             dados = funcoes.rolar_dados(qnt_de_dados)
             rerrolar += 1
     elif ação == 4:
-        print(funcoes.imprime_cartela(cartela_de_pontos))
+        funcoes.imprime_cartela(cartela_de_pontos)
     elif ação == 0:
-        jogada = input()
-        lista = ["1", "2", "3", "4", "5", "6"]
-        if jogada in lista:
-            jogada = int(jogada)
-        if jogada in cartela_de_pontos['regra_simples']:
-            if cartela_de_pontos['regra_simples'][jogada] == -1:
-                pontos = funcoes.faz_jogada(dados_guardados, jogada, cartela_de_pontos)
-                qnt_de_dados = 5
-                dados = funcoes.rolar_dados(qnt_de_dados)
-                dados_guardados = []
-                i += 1
+        validacao = False
+        while validacao != True:
+            jogada = input()
+            lista = ["1", "2", "3", "4", "5", "6"]
+            if jogada in lista:
+                jogada = int(jogada)
+            if jogada in cartela_de_pontos['regra_simples']:
+                if cartela_de_pontos['regra_simples'][jogada] == -1:
+                    pontos = funcoes.faz_jogada(dados_guardados, jogada, cartela_de_pontos)
+                    qnt_de_dados = 5
+                    dados = funcoes.rolar_dados(qnt_de_dados)
+                    dados_guardados = []
+                    i += 1
+                    validacao = True
+                else:
+                    print("Essa combinação já foi utilizada.")
+            elif jogada in cartela_de_pontos['regra_avancada']:
+                if cartela_de_pontos['regra_avancada'][jogada] == -1:
+                    pontos = funcoes.faz_jogada(dados_guardados, jogada, cartela_de_pontos)
+                    qnt_de_dados = 5
+                    dados = funcoes.rolar_dados(qnt_de_dados)
+                    dados_guardados = []
+                    i += 1
+                    validacao = True
+                else:
+                    print("Essa combinação já foi utilizada.")
             else:
-                print("Essa combinação já foi utilizada.")
-        elif jogada in cartela_de_pontos['regra_avancada']:
-            if cartela_de_pontos['regra_avancada'][jogada] == -1:
-                pontos = funcoes.faz_jogada(dados_guardados, jogada, cartela_de_pontos)
-                qnt_de_dados = 5
-                dados = funcoes.rolar_dados(qnt_de_dados)
-                dados_guardados = []
-                i += 1
-            else:
-                print("Essa combinação já foi utilizada.")
-        else:
-            print("Combinação inválida. Tente novamente.") 
+                print("Combinação inválida. Tente novamente.") 
     else:
         print("Opção inválida. Tente novamente.") 
-
+pontuação_total_simples = 0
+pontuação_total_avancado = 0
 for regra, combinacoes in cartela_de_pontos.items():
     if regra == 'regra_simples':
-        for combi, ponto in combinacoes:
+        for combi, ponto in combinacoes.items():
             pontuação_total_simples += ponto
     elif regra == 'regra_avancada':
-        for combi, ponto in combinacoes:
+        for combi, ponto in combinacoes.items():
             pontuação_total_avancado += ponto
 if pontuação_total_simples >= 63:
     pontuação_total_simples += 35
 pontuação_total = pontuação_total_avancado + pontuação_total_simples
-print(funcoes.imprime_cartela(cartela_de_pontos))
+funcoes.imprime_cartela(cartela_de_pontos)
 print(f"Pontuação total: {pontuação_total}")
