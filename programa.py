@@ -1,11 +1,30 @@
 import funcoes
 import random
+cartela_de_pontos = {
+    'regra_simples':  {
+        1:-1,
+        2:-1,
+        3:-1,
+        4:-1,
+        5:-1,
+        6:-1
+    },
+    'regra_avancada' : {
+        'sem_combinacao':-1,
+        'quadra': -1,
+        'full_house': -1,
+        'sequencia_baixa': -1,
+        'sequencia_alta': -1,
+        'cinco_iguais': -1
+    }
+}
 dados_guardados = []
 qnt_de_dados = 5
 dados = []
-for i in range(qnt_de_dados):
-    dados.append(random.randint(1,6))
-for i in range(12):
+rerrolar = 0
+dados = funcoes.rolar_dados(qnt_de_dados)
+i = 0
+while i < 12:
     print(f"Dados rolados: {dados}")
     print(f"Dados guardados: {dados_guardados}")
     print("Digite 1 para guardar um dado, 2 para remover um dado, 3 para rerrolar, 4 para ver a cartela ou 0 para marcar a pontuação:")
@@ -25,5 +44,31 @@ for i in range(12):
         dados_guardados = dados_atu[1]
         dados = dados_atu[0]
     elif ação == 3:
-        print("Digite a combinação desejada:")
-        
+        if rerrolar > 2:
+            print("Você já usou todas as rerrolagens.")
+        else:
+            dados = funcoes.rolar_dados(qnt_de_dados)
+            rerrolar += 1
+    elif ação == 4:
+        print(funcoes.imprime_cartela(cartela_de_pontos))
+    elif ação == 0:
+        jogada = input()
+        if jogada in cartela_de_pontos['regra_simples']:
+            if cartela_de_pontos['regra_simples'][jogada] == -1:
+                pontos = funcoes.faz_jogada(dados_guardados, jogada, cartela_de_pontos)
+                dados = funcoes.rolar_dados(qnt_de_dados)
+                i += 1
+            else:
+                print("Essa combinação já foi utilizada.")
+        elif jogada in cartela_de_pontos['regra_avancada']:
+            if cartela_de_pontos['regra_avancada'][jogada] == -1:
+                pontos = funcoes.faz_jogada(dados_guardados, jogada, cartela_de_pontos)
+                dados = funcoes.rolar_dados(qnt_de_dados)
+                i += 1
+            else:
+                print("Essa combinação já foi utilizada.")
+        else:
+            print("Combinação inválida. Tente novamente.") 
+    else:
+        print("Opção inválida. Tente novamente.") 
+    
