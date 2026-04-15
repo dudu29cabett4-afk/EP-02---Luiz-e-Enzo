@@ -23,6 +23,7 @@ qnt_de_dados = 5
 dados = []
 rerrolar = 0
 dados = funcoes.rolar_dados(qnt_de_dados)
+funcoes.imprime_cartela(cartela_de_pontos)
 i = 0
 while i < 12:
     print(f"Dados rolados: {dados}")
