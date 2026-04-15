@@ -53,6 +53,7 @@ while i < 12:
         funcoes.imprime_cartela(cartela_de_pontos)
     elif ação == 0:
         validacao = False
+        print("Digite a combinação desejada:")
         while validacao != True:
             jogada = input()
             lista = ["1", "2", "3", "4", "5", "6"]
