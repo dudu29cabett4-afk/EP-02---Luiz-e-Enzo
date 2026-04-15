@@ -44,7 +44,7 @@ while i < 12:
         dados_guardados = dados_atu[1]
         dados = dados_atu[0]
     elif ação == 3:
-        if rerrolar > 2:
+        if rerrolar >= 2:
             print("Você já usou todas as rerrolagens.")
         else:
             dados = funcoes.rolar_dados(qnt_de_dados)
@@ -53,17 +53,24 @@ while i < 12:
         print(funcoes.imprime_cartela(cartela_de_pontos))
     elif ação == 0:
         jogada = input()
+        lista = ["1", "2", "3", "4", "5", "6"]
+        if jogada in lista:
+            jogada = int(jogada)
         if jogada in cartela_de_pontos['regra_simples']:
             if cartela_de_pontos['regra_simples'][jogada] == -1:
                 pontos = funcoes.faz_jogada(dados_guardados, jogada, cartela_de_pontos)
+                qnt_de_dados = 5
                 dados = funcoes.rolar_dados(qnt_de_dados)
+                dados_guardados = []
                 i += 1
             else:
                 print("Essa combinação já foi utilizada.")
         elif jogada in cartela_de_pontos['regra_avancada']:
             if cartela_de_pontos['regra_avancada'][jogada] == -1:
                 pontos = funcoes.faz_jogada(dados_guardados, jogada, cartela_de_pontos)
+                qnt_de_dados = 5
                 dados = funcoes.rolar_dados(qnt_de_dados)
+                dados_guardados = []
                 i += 1
             else:
                 print("Essa combinação já foi utilizada.")
@@ -71,4 +78,16 @@ while i < 12:
             print("Combinação inválida. Tente novamente.") 
     else:
         print("Opção inválida. Tente novamente.") 
-    
+
+for regra, combinacoes in cartela_de_pontos.items():
+    if regra == 'regra_simples':
+        for combi, ponto in combinacoes:
+            pontuação_total_simples += ponto
+    elif regra == 'regra_avancada':
+        for combi, ponto in combinacoes:
+            pontuação_total_avancado += ponto
+if pontuação_total_simples >= 63:
+    pontuação_total_simples += 35
+pontuação_total = pontuação_total_avancado + pontuação_total_simples
+print(funcoes.imprime_cartela(cartela_de_pontos))
+print(f"Pontuação total: {pontuação_total}")
