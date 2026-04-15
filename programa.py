@@ -30,6 +30,10 @@ while i < 12:
     print(f"Dados guardados: {dados_guardados}")
     print("Digite 1 para guardar um dado, 2 para remover um dado, 3 para rerrolar, 4 para ver a cartela ou 0 para marcar a pontuação:")
     ação = input()
+    possibilidades = ['0', '1', '2', '3', '4']
+    while ação not in possibilidades:
+        print("Opção inválida. Tente novamente.")
+        ação = input()
     if ação == '1':
         print("Digite o índice do dado a ser guardado (0 a 4):")
         guardar = int(input())
@@ -53,39 +57,42 @@ while i < 12:
     elif ação == '4':
         funcoes.imprime_cartela(cartela_de_pontos)
     elif ação == '0':
-        validacao = False
+        validacao_jogada = False
         print("Digite a combinação desejada:")
-        while validacao != True:
+        todos_dados = []
+        for j in range(len(dados)):
+            todos_dados.append(dados[j])
+        for w in range(len(dados_guardados)):
+            todos_dados.append(dados_guardados[w])
+        while validacao_jogada != True:
             jogada = input()
             lista = ["1", "2", "3", "4", "5", "6"]
             if jogada in lista:
                 jogada = int(jogada)
             if jogada in cartela_de_pontos['regra_simples']:
                 if cartela_de_pontos['regra_simples'][jogada] == -1:
-                    pontos = funcoes.faz_jogada(dados_guardados, jogada, cartela_de_pontos)
+                    pontos = funcoes.faz_jogada(todos_dados, jogada, cartela_de_pontos)
                     qnt_de_dados = 5
                     dados = funcoes.rolar_dados(qnt_de_dados)
                     dados_guardados = []
                     rerrolar = 0
                     i += 1
-                    validacao = True
+                    validacao_jogada = True
                 else:
                     print("Essa combinação já foi utilizada.")
             elif jogada in cartela_de_pontos['regra_avancada']:
                 if cartela_de_pontos['regra_avancada'][jogada] == -1:
-                    pontos = funcoes.faz_jogada(dados_guardados, jogada, cartela_de_pontos)
+                    pontos = funcoes.faz_jogada(todos_dados, jogada, cartela_de_pontos)
                     qnt_de_dados = 5
                     dados = funcoes.rolar_dados(qnt_de_dados)
                     dados_guardados = []
                     rerrolar = 0
                     i += 1
-                    validacao = True
+                    validacao_jogada = True
                 else:
                     print("Essa combinação já foi utilizada.")
             else:
-                print("Combinação inválida. Tente novamente.") 
-    else:
-        print("Opção inválida. Tente novamente.") 
+                print("Combinação inválida. Tente novamente.")  
 pontuação_total_simples = 0
 pontuação_total_avancado = 0
 for regra, combinacoes in cartela_de_pontos.items():
